@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import addTodo from "../redux/todo/thunk/addTodo";
 
@@ -10,9 +11,10 @@ const TodoSearchBar = () => {
     if (inputValue) {
       const newTodo = { id: Date.now(), name: inputValue, status: "to do" };
       dispatch(addTodo(newTodo));
+      toast.success("Successfully created!");
       setInputValue("");
     } else {
-      alert("Your field is empty.");
+      toast.error("Input field is't empty!");
     }
   };
   return (

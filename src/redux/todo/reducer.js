@@ -1,9 +1,12 @@
-import { ADD_TODO, DELETE_TODO, UPDATE_TODO } from "./actionsType";
+import { ADD_TODO, DELETE_TODO, FETCH_TODO, UPDATE_TODO } from "./actionsType";
 import { initialState } from "./initialState";
 
 const todoReducer = (state = initialState, action) => {
   console.log(state);
   switch (action.type) {
+    case FETCH_TODO:
+      return (state = action.payload);
+
     case ADD_TODO:
       return [...state, action.payload];
 

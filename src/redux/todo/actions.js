@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, UPDATE_TODO } from "./actionsType";
+import { ADD_TODO, DELETE_TODO, FETCH_TODO, UPDATE_TODO } from "./actionsType";
 
 // * @ ADD_TODO
 // * @param {A todo object} todo
@@ -30,5 +30,15 @@ export const update_todo = (todoId, todo) => {
       id: todoId,
       todo: todo,
     },
+  };
+};
+
+// * @ FETCH_TODO
+// * @param {no } todo
+// * @returns {Array of todos}
+export const fetch_todo = (todos) => {
+  return {
+    type: FETCH_TODO,
+    payload: todos,
   };
 };
