@@ -1,15 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import TodoList from "./TodoList";
 
 const TodoGrid = () => {
-  const todos = [
-    { id: 1, name: "todo1", status: "to do" },
-    { id: 2, name: "todo2", status: "to do" },
-    { id: 3, name: "todo3", status: "in-progress" },
-    { id: 4, name: "todo4", status: "done" },
-    { id: 5, name: "todo5", status: "to do" },
-  ];
   // filters by status
+  const todos = useSelector((state) => state.todos);
 
   // todo filter
   const filterByTodo = (todo) => todo?.status?.toLowerCase() === "to do";

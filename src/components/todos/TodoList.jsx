@@ -30,7 +30,7 @@ const TodoList = ({ title, todos = [] }) => {
         <span className="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30">
           {todos.length}
         </span>
-        {title.toLowerCase() === "todo" && (
+        {/* {title.toLowerCase() === "todo" && (
           <button
             className="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100"
             // onClick={controlModal}
@@ -49,7 +49,7 @@ const TodoList = ({ title, todos = [] }) => {
               ></path>
             </svg>
           </button>
-        )}
+        )} */}
       </div>
       <div className="flex flex-col pb-2 overflow-auto ">
         {todos.map((todo) => {
