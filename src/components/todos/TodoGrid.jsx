@@ -3,16 +3,16 @@ import TodoList from "./TodoList";
 
 const TodoGrid = () => {
   const todos = [
-    { id: 1, name: "todo1", status: "to-do" },
-    { id: 2, name: "todo2", status: "to-do" },
-    { id: 3, name: "todo3", status: "to-do" },
-    { id: 4, name: "todo4", status: "to-do" },
-    { id: 5, name: "todo5", status: "to-do" },
+    { id: 1, name: "todo1", status: "to do" },
+    { id: 2, name: "todo2", status: "to do" },
+    { id: 3, name: "todo3", status: "in-progress" },
+    { id: 4, name: "todo4", status: "done" },
+    { id: 5, name: "todo5", status: "to do" },
   ];
   // filters by status
 
   // todo filter
-  const filterByTodo = (todo) => todo?.status?.toLowerCase() === "to-do";
+  const filterByTodo = (todo) => todo?.status?.toLowerCase() === "to do";
 
   // in-progress filter
   const filterByInProgress = (todo) =>
@@ -38,15 +38,18 @@ const TodoGrid = () => {
     );
   } else if (todos.length > 0) {
     content = (
-      <div className="flex flex-grow px-10 mt-4 space-x-6 overflow-auto">
+      <div className="flex flex-grow px-10 mt-4 space-x-6 overflow-auto justify-center">
         {/* To do list */}
-        <TodoList title="To Do" todo={todos.filter(filterByTodo)} />
+        <TodoList title="To Do" todos={todos.filter(filterByTodo)} />
 
         {/* In Progress list */}
-        <TodoList title="To Do" todo={todos.filter(filterByTodo)} />
+        <TodoList
+          title="In-Progress"
+          todos={todos.filter(filterByInProgress)}
+        />
 
         {/* done list */}
-        <TodoList title="To Do" todo={todos.filter(filterByTodo)} />
+        <TodoList title="Done" todos={todos.filter(filterByDone)} />
       </div>
     );
   }
