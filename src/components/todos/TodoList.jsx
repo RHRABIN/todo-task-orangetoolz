@@ -1,12 +1,18 @@
 import React from "react";
 import { useDrop } from "react-dnd";
+import { useDispatch } from "react-redux";
+import updateTodo from "../../redux/todo/thunk/updateTodo";
 import SingleTodo from "./SingleTodo";
 
 const TodoList = ({ title, todos = [] }) => {
   // handleDrop function for dropping and change state and localStorage
+  const dispatch = useDispatch();
+
   const handleDrop = (todo) => {
     if (todo?.status?.toLowerCase() !== title?.toLowerCase()) {
-      console.log("status", title);
+      const updateTodoData = { ...todo };
+      updateTodoData.status = title?.toLowerCase();
+      dispatch(updateTodo(updateTodoData.id, updateTodoData));
     }
   };
 

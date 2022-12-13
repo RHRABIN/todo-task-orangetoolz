@@ -4,13 +4,13 @@ const addTodo = (todo) => {
   return async (dispatch) => {
     // declare an object for storing the localStorage data
 
-    let newDataUsers = JSON.parse(localStorage.getItem("all-todo"));
-    if (newDataUsers) {
-      newDataUsers = [...newDataUsers, todo];
+    let storeTodo = JSON.parse(localStorage.getItem("all-todo"));
+    if (storeTodo) {
+      storeTodo = [...storeTodo, todo];
     } else {
-      newDataUsers = [todo];
+      storeTodo = [todo];
     }
-    localStorage.setItem("all-todo", JSON.stringify(newDataUsers));
+    localStorage.setItem("all-todo", JSON.stringify(storeTodo));
 
     dispatch(add_todo(todo));
   };
