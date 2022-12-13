@@ -3,13 +3,13 @@ import logo from "../assests/logo.jpg";
 const Header = () => {
   return (
     <div>
-      <div className="flex items-center flex-shrink-0 w-full h-16 px-10 bg-opacity-75 justify-between">
-        <div className="ml-10 flex gap-4 items-center">
+      <div className="flex items-center flex-shrink-0 w-full h-16  bg-opacity-75 justify-between">
+        <div className="flex gap-4 items-center">
           <img src={logo} className={"w-[220px] h-[114px]"} />
         </div>
         <div>
           <input
-            className="flex items-center w-[18.75rem] h-10 px-4 ml-10 text-sm bg-gray-200 rounded-full focus:outline-none focus:ring"
+            className="flex items-center w-[18.75rem] h-10 px-4  text-sm bg-gray-200 rounded-full focus:outline-none focus:ring"
             type="search"
             placeholder="Search for todo"
           />
