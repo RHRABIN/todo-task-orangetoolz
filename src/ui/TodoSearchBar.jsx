@@ -7,8 +7,13 @@ const TodoSearchBar = () => {
   const dispatch = useDispatch();
 
   const handleAdd = () => {
-    const newTodo = { id: Date.now(), name: inputValue, status: "to do" };
-    dispatch(addTodo(newTodo));
+    if (inputValue) {
+      const newTodo = { id: Date.now(), name: inputValue, status: "to do" };
+      dispatch(addTodo(newTodo));
+      setInputValue("");
+    } else {
+      alert("Your field is empty.");
+    }
   };
   return (
     <div className="flex gap-8 w-full justify-center items-center">
@@ -16,6 +21,7 @@ const TodoSearchBar = () => {
         className="flex items-center w-[18.75rem] h-10 px-4  text-sm bg-gray-200 rounded focus:outline-none focus:ring"
         type="search"
         placeholder="Add new todo"
+        value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
       <button
