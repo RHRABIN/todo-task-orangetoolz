@@ -1,6 +1,7 @@
 import "./App.css";
 import { useDispatch } from "react-redux";
 import addTodo from "./redux/todo/thunk/addTodo";
+import Header from "./ui/Header";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,10 +15,8 @@ function App() {
     dispatch(addTodo(todo));
   };
   return (
-    <div>
-      <h1>hello redux</h1>
-      <h2>hello rabin</h2>
-      <button onClick={handleAdd}>Add to a task</button>
+    <div className="h-full max-w-[1520px] m-auto px-2">
+      <Header />
     </div>
   );
 }
