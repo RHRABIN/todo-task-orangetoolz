@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import logo from "../assests/logo.jpg";
+import { searchText } from "../redux/filters/actions";
+
 const Header = () => {
   const dispatch = useDispatch();
 
@@ -17,7 +19,7 @@ const Header = () => {
 
   // change search text in the redux store
   const changeSearchText = (value) => {
-    // dispatch(updateSearchText(value));
+    dispatch(searchText(value));
   };
 
   // update search by debouncing

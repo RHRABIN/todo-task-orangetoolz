@@ -4,7 +4,6 @@ import { ADD_TODO, DELETE_TODO, FETCH_TODO, UPDATE_TODO } from "./actionsType";
 const initialState = [];
 
 const todoReducer = (state = initialState, action) => {
-  console.log(state);
   switch (action.type) {
     case FETCH_TODO:
       return (state = action.payload);

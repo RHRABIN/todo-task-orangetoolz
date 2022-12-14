@@ -1,12 +1,13 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { MdDelete } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import deleteTodo from "../../redux/todo/thunk/deleteTodo";
 
 const SingleTodo = ({ todo }) => {
   const dispatch = useDispatch();
+  const { searchText } = useSelector((state) => state?.filter);
 
   // extract value from todo
   const { name, createdAt } = todo || {};
@@ -38,7 +39,11 @@ const SingleTodo = ({ todo }) => {
 
   return (
     <div
-      className={` flex flex-col items-start px-4 py-1  bg-white rounded cursor-grab`}
+      className={` flex flex-col items-start px-4 py-1   bg-white rounded cursor-grab  ${
+        searchText &&
+        todo.name.toLowerCase().includes(searchText.toLowerCase()) &&
+        "animate-pulse  "
+      }`}
       ref={drag}
       style={{ display: isDragging ? "none" : "flex" }}
     >

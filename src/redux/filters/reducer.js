@@ -6,7 +6,9 @@ const initialState = {
 
 const filterReducer = (state = initialState, action) => {
   if (action.type === FILTER_TEXT) {
-    return (state.searchText = action.payload);
+    return { ...state, searchText: action.payload };
+  } else {
+    return state;
   }
 };
 
