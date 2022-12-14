@@ -9,12 +9,10 @@ const updateTodo = (id, todo) => {
         if (t.id !== id) {
           return storeUpdatedTodo.push(t);
         } else {
-          console.log("enter", todo);
           return storeUpdatedTodo.push(todo);
         }
       });
     }
-    console.log(storeUpdatedTodo);
     localStorage.setItem("all-todo", JSON.stringify(storeUpdatedTodo));
 
     dispatch(update_todo(id, todo));

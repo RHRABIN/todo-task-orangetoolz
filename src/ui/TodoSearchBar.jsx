@@ -14,7 +14,7 @@ const TodoSearchBar = () => {
       toast.success("Successfully created!");
       setInputValue("");
     } else {
-      toast.error("Input field is't empty!");
+      toast.error("Input field is empty!");
     }
   };
   return (
