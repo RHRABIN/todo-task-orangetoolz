@@ -1,5 +1,7 @@
 import { ADD_TODO, DELETE_TODO, FETCH_TODO, UPDATE_TODO } from "./actionsType";
-import { initialState } from "./initialState";
+
+// initialState empty array
+const initialState = [];
 
 const todoReducer = (state = initialState, action) => {
   console.log(state);

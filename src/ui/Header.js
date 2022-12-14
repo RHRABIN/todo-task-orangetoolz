@@ -1,6 +1,27 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import logo from "../assests/logo.jpg";
 const Header = () => {
+  const dispatch = useDispatch();
+
+  // debounce function
+  const debounceHandler = (fn, delay) => {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        fn(...args);
+      }, delay);
+    };
+  };
+
+  // change search text in the redux store
+  const changeSearchText = (value) => {
+    // dispatch(updateSearchText(value));
+  };
+
+  // update search by debouncing
+  const handleUpdateSearch = debounceHandler(changeSearchText, 500);
   return (
     <div>
       <div className="flex items-center flex-shrink-0 w-full h-16  bg-opacity-75 justify-between">
@@ -12,6 +33,7 @@ const Header = () => {
             className="flex items-center w-[18.75rem] h-10 px-4  text-sm bg-gray-200 rounded-full focus:outline-none focus:ring"
             type="search"
             placeholder="Search for todo"
+            onChange={(e) => handleUpdateSearch(e.target.value)}
           />
         </div>
         <div className="flex gap-2 items-center">

@@ -30,7 +30,7 @@ const TodoList = ({ title, todos = [] }) => {
       className="flex flex-col flex-shrink-0 w-72 "
       ref={drop}
       style={{
-        border: isOver ? "1px dashed #999" : "1px solid black",
+        border: isOver ? "1.5px dashed #999" : "1px solid black",
         borderRadius: "5px",
       }}
     >

@@ -21,10 +21,10 @@ const TodoGrid = () => {
   if (todos?.length === 0) {
     content = (
       <>
-        <p className="text-orange-500 text-center mt-6">
+        <p className="text-orange-600 text-center mt-6 text-lg">
           No todo found! You can add todo
         </p>
-        <div className="flex flex-grow px-10 mt-4 space-x-6 overflow-auto">
+        <div className="flex justify-center flex-grow px-10 mt-4 space-x-6 overflow-auto">
           <TodoList title="To Do" />
           <TodoList title="In Progress" />
           <TodoList title="Done" />
