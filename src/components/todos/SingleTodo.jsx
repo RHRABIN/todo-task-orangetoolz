@@ -1,18 +1,25 @@
 import moment from "moment/moment";
-import React from "react";
+import React, { useState } from "react";
 import { useDrag } from "react-dnd";
 import { MdDelete } from "react-icons/md";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 import { RiCalendar2Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import deleteTodo from "../../redux/todo/thunk/deleteTodo";
+import TodoTitleUpdateModal from "../../ui/TodoTitleUpdateModal";
 
 const SingleTodo = ({ todo }) => {
   const dispatch = useDispatch();
   const { searchText } = useSelector((state) => state?.filter);
-
   // extract value from todo
   const { name, createdAt, status } = todo || {};
+
+  // modal states
+  const [opened, setOpened] = useState(false);
+  const controlModal = () => {
+    setOpened((prevState) => !prevState);
+  };
 
   // handleDeleteTodo
   const handleDeleteTodo = (id) => {
@@ -51,19 +58,36 @@ const SingleTodo = ({ todo }) => {
     >
       <div
         className="flex justify-between flex-col
-       px-2 py-2 bg-[#d3d3d3] h-20 w-full rounded"
+       px-2 py-2 bg-[#d3d3d3] h-20 w-full rounded group"
       >
         <div className="flex justify-between items-center">
+          {/* 
+            Todo title/name 
+          */}
           <p>{name}</p>
-          {status === "to do" && (
+
+          {/* 
+            if todo status to do then show on  hover a delete icon otherwise show edit icon
+          */}
+
+          {status === "to do" ? (
             <button
               onClick={() => handleDeleteTodo(todo?.id)}
               title="Delete"
-              className="flex align-center justify-center  w-5 h-5  text-gray-500 rounded hover:bg-red-200 hover:text-red-400 group-hover:flex "
+              className="hidden align-center justify-center  w-5 h-5  text-gray-500 rounded hover:bg-red-200 hover:text-red-400 group-hover:flex "
               // onClick={handleDelete}
               data-bs-toggle="tooltip"
             >
               <MdDelete className="mt-[2px]" />
+            </button>
+          ) : (
+            <button
+              title="Edit title"
+              className="hidden align-center justify-center  w-5 h-5  text-gray-500 rounded hover:bg-gray-200 group:hover:flex group-hover:flex "
+              onClick={controlModal}
+              data-bs-toggle="tooltip"
+            >
+              <BiDotsVerticalRounded className="mt-[2px]" />
             </button>
           )}
         </div>
@@ -83,6 +107,7 @@ const SingleTodo = ({ todo }) => {
           </span>
         </footer>
       </div>
+      <TodoTitleUpdateModal open={opened} control={controlModal} data={todo} />
     </div>
   );
 };
