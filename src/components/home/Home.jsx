@@ -1,11 +1,14 @@
 import React from "react";
-import TodoSearchBar from "../../ui/TodoSearchBar";
+import TodoAddInputField from "../../ui/TodoAddInputField";
 import TodosContainer from "../todos/TodosContainer";
 
 const Home = () => {
   return (
     <div>
-      <TodoSearchBar />
+      {/* 
+        Import TodoAddInputField and TodosContainer and finaly this Home component import from App.js
+      */}
+      <TodoAddInputField />
       <TodosContainer />
     </div>
   );

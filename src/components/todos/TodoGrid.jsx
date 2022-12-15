@@ -18,7 +18,7 @@ const TodoGrid = () => {
 
   // decide what to render base on todo
   let content = null;
-  if (todos?.length === 0) {
+  if (todos?.length === 0 || !todos) {
     content = (
       <>
         <p className="text-orange-600 text-center mt-6 text-lg">
@@ -33,7 +33,7 @@ const TodoGrid = () => {
     );
   } else if (todos?.length > 0) {
     content = (
-      <div className="flex flex-grow px-10 mt-4 space-x-6 overflow-auto justify-center">
+      <div className="flex flex-grow flex-wrap px-10 mt-4 space-x-0  sm:space-x-6 overflow-auto justify-center">
         {/* To do list */}
         <TodoList title="To Do" todos={todos.filter(filterByTodo)} />
 

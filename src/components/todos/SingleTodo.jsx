@@ -1,6 +1,8 @@
+import moment from "moment/moment";
 import React from "react";
 import { useDrag } from "react-dnd";
 import { MdDelete } from "react-icons/md";
+import { RiCalendar2Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import deleteTodo from "../../redux/todo/thunk/deleteTodo";
@@ -10,7 +12,7 @@ const SingleTodo = ({ todo }) => {
   const { searchText } = useSelector((state) => state?.filter);
 
   // extract value from todo
-  const { name, createdAt } = todo || {};
+  const { name, createdAt, status } = todo || {};
 
   // handleDeleteTodo
   const handleDeleteTodo = (id) => {
@@ -41,7 +43,7 @@ const SingleTodo = ({ todo }) => {
     <div
       className={` flex flex-col items-start px-4 py-1   bg-white rounded cursor-grab  ${
         searchText &&
-        todo.name.toLowerCase().includes(searchText.toLowerCase()) &&
+        name.toLowerCase().includes(searchText.toLowerCase()) &&
         "animate-pulse  "
       }`}
       ref={drag}
@@ -53,7 +55,7 @@ const SingleTodo = ({ todo }) => {
       >
         <div className="flex justify-between items-center">
           <p>{name}</p>
-          {todo?.status === "to do" && (
+          {status === "to do" && (
             <button
               onClick={() => handleDeleteTodo(todo?.id)}
               title="Delete"
@@ -65,7 +67,21 @@ const SingleTodo = ({ todo }) => {
             </button>
           )}
         </div>
-        <p className="text-end text-xs">10 Sep 2022</p>
+        <footer className="flex justify-between">
+          <span
+            className={`text-xs px-1 pb-[2px] rounded-full ${
+              status === "to do" && "bg-gray-200  text-gray-600"
+            } ${status === "in-progress" && "bg-orange-200  text-orange-600"} ${
+              status === "done" && "bg-green-200  text-green-600"
+            }`}
+          >
+            {todo?.status}
+          </span>
+          <span className=" text-xs flex gap-1 items-center">
+            <RiCalendar2Line />
+            {moment(createdAt, "MM-DD-YYYY").format("ll")}
+          </span>
+        </footer>
       </div>
     </div>
   );

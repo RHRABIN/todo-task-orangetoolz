@@ -2,15 +2,29 @@ import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import addTodo from "../redux/todo/thunk/addTodo";
+import fetchTodo from "../redux/todo/thunk/fetchTodos";
 
-const TodoSearchBar = () => {
+const TodoAddInputField = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
 
   const handleAdd = () => {
+    const createdAt = new Date().toLocaleDateString();
+
+    // if input value is available then add this todo
     if (inputValue) {
-      const newTodo = { id: Date.now(), name: inputValue, status: "to do" };
+      const newTodo = {
+        id: Date.now(),
+        name: inputValue,
+        status: "to do",
+        createdAt: createdAt,
+      };
+
+      // dispatch( add todo and fetch for initially )
       dispatch(addTodo(newTodo));
+      dispatch(fetchTodo());
+
+      // add success message
       toast.success("Successfully created!");
       setInputValue("");
     } else {
@@ -36,4 +50,4 @@ const TodoSearchBar = () => {
   );
 };
 
-export default TodoSearchBar;
+export default TodoAddInputField;

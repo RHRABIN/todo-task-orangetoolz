@@ -27,7 +27,7 @@ const TodoList = ({ title, todos = [] }) => {
 
   return (
     <div
-      className="flex flex-col flex-shrink-0 w-72 "
+      className="flex flex-col flex-shrink-0 w-72 mb-8 sm:mb-0 mt-3"
       ref={drop}
       style={{
         border: isOver ? "1.5px dashed #999" : "1px solid black",
@@ -40,7 +40,7 @@ const TodoList = ({ title, todos = [] }) => {
           {todos.length}
         </span>
       </div>
-      <div className="flex flex-col pb-2 overflow-auto mt-3 ">
+      <div className="flex flex-col  pb-2 overflow-auto mt-3 ">
         {todos.map((todo) => {
           return <SingleTodo key={todo.id} todo={todo} />;
         })}
