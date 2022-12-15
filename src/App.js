@@ -13,14 +13,14 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="h-full max-w-[1520px] m-auto px-4 sm:px-12">
+    <div className="h-full max-w-[1520px] m-auto px-4 sm:px-12 mx-auto">
       <Suspense fallback={<SpinnerLoading />}>
         <Header />
         <div className="mt-12 sm:mt-28">
           <Home />
         </div>
       </Suspense>
-      <Toaster toastOptions={{ duration: 2000, position: "top-right" }} />
+      <Toaster toastOptions={{ duration: 3000, position: "top-right" }} />
     </div>
   );
 }

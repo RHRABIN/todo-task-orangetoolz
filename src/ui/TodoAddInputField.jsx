@@ -8,7 +8,8 @@ const TodoAddInputField = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
 
-  const handleAdd = () => {
+  const handleAdd = (e) => {
+    e.preventDefault();
     const createdAt = new Date().toLocaleDateString();
 
     // if input value is available then add this todo
@@ -32,7 +33,11 @@ const TodoAddInputField = () => {
     }
   };
   return (
-    <div className="flex gap-8 w-full justify-center items-center">
+    <form
+      onSubmit={handleAdd}
+      className="flex gap-8 w-full justify-center items-center"
+    >
+      {/* Input field to get input todo  */}
       <input
         className="flex items-center w-[18.75rem] h-10 px-4  text-sm bg-gray-200 rounded focus:outline-none focus:ring"
         type="search"
@@ -40,13 +45,14 @@ const TodoAddInputField = () => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
+      {/* Input value submit button */}
       <button
         className="h-10 px-4 bg-gray-200 rounded focus:outline-none focus:ring"
-        onClick={handleAdd}
+        type="submit"
       >
         ADD
       </button>
-    </div>
+    </form>
   );
 };
 

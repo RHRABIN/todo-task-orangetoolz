@@ -12,11 +12,14 @@ import TodoTitleUpdateModal from "../../ui/TodoTitleUpdateModal";
 const SingleTodo = ({ todo }) => {
   const dispatch = useDispatch();
   const { searchText } = useSelector((state) => state?.filter);
+
   // extract value from todo
   const { name, createdAt, status } = todo || {};
 
-  // modal states
+  // modal states true / false
   const [opened, setOpened] = useState(false);
+
+  // control modal for state changes
   const controlModal = () => {
     setOpened((prevState) => !prevState);
   };
@@ -39,7 +42,7 @@ const SingleTodo = ({ todo }) => {
     });
   };
 
-  // DND - dragging - hook
+  // DND - dragging - hook implement
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "div",
     item: todo,
@@ -61,26 +64,23 @@ const SingleTodo = ({ todo }) => {
        px-2 py-2 bg-[#d3d3d3] h-20 w-full rounded group"
       >
         <div className="flex justify-between items-center">
-          {/* 
-            Todo title/name 
-          */}
+          {/* Todo title/name */}
           <p>{name}</p>
 
-          {/* 
-            if todo status to do then show on  hover a delete icon otherwise show edit icon
-          */}
+          {/* if todo status will be to do then show on  hover a delete icon otherwise show edit icon conditionally */}
 
           {status === "to do" ? (
+            // Delete Button
             <button
               onClick={() => handleDeleteTodo(todo?.id)}
               title="Delete"
               className="hidden align-center justify-center  w-5 h-5  text-gray-500 rounded hover:bg-red-200 hover:text-red-400 group-hover:flex "
-              // onClick={handleDelete}
               data-bs-toggle="tooltip"
             >
               <MdDelete className="mt-[2px]" />
             </button>
           ) : (
+            // Edit button
             <button
               title="Edit title"
               className="hidden align-center justify-center  w-5 h-5  text-gray-500 rounded hover:bg-gray-200 group:hover:flex group-hover:flex "
@@ -91,6 +91,8 @@ const SingleTodo = ({ todo }) => {
             </button>
           )}
         </div>
+
+        {/* todo footer date and status */}
         <footer className="flex justify-between">
           <span
             className={`text-xs px-1 pb-[2px] rounded-full ${
@@ -107,6 +109,8 @@ const SingleTodo = ({ todo }) => {
           </span>
         </footer>
       </div>
+
+      {/* Todo update modal with necessary data by props */}
       <TodoTitleUpdateModal open={opened} control={controlModal} data={todo} />
     </div>
   );

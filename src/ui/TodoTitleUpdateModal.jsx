@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import updateTodo from "../redux/todo/thunk/updateTodo";
 
@@ -6,13 +7,16 @@ const TodoTitleUpdateModal = ({ open, control, data }) => {
   const [title, setTitle] = useState(data?.name);
   const dispatch = useDispatch();
 
+  // handle updated todo title
   const handleSubmit = (e) => {
     e.preventDefault();
     const updateData = { ...data };
     updateData.name = title;
     dispatch(updateTodo(updateData.id, updateData));
+    toast.success("Successfully updated!");
     control();
   };
+
   return (
     open && (
       <>
@@ -24,8 +28,8 @@ const TodoTitleUpdateModal = ({ open, control, data }) => {
           <h2 className="text-sm font-extrabold text-gray-700">Update title</h2>
           <form onSubmit={handleSubmit}>
             <div className="overflow-hidden shadow sm:rounded-md">
+              {/* input filed to input title */}
               <div className="bg-gray-200 px-4 py-5 sm:p-6 space-y-4">
-                {/* Project Title Starts */}
                 <div>
                   <label
                     htmlFor="title"
@@ -44,9 +48,10 @@ const TodoTitleUpdateModal = ({ open, control, data }) => {
                     onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
-
-                {/* Team Options Ends */}
               </div>
+              {/* end input filed to input title */}
+
+              {/* submit button  */}
               <div className="bg-gray-200 px-4 py-3 text-right sm:px-6">
                 <button
                   type="submit"
@@ -54,6 +59,7 @@ const TodoTitleUpdateModal = ({ open, control, data }) => {
                 >
                   Update
                 </button>
+                {/* End submit button  */}
               </div>
             </div>
           </form>

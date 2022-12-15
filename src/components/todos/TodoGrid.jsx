@@ -16,7 +16,7 @@ const TodoGrid = () => {
   // done filter
   const filterByDone = (todo) => todo?.status?.toLowerCase() === "done";
 
-  // decide what to render base on todo
+  // decide what to render base on todo (:::: if todo is available then see everything with status or see only title ::::)
   let content = null;
   if (todos?.length === 0 || !todos) {
     content = (
@@ -43,7 +43,7 @@ const TodoGrid = () => {
           todos={todos.filter(filterByInProgress)}
         />
 
-        {/* done list */}
+        {/* Done list */}
         <TodoList title="Done" todos={todos.filter(filterByDone)} />
       </div>
     );
