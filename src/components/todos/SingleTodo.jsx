@@ -70,7 +70,7 @@ const SingleTodo = ({ todo }) => {
           {/* if todo status will be to do then show on  hover a delete icon otherwise show edit icon conditionally */}
 
           {status === "to do" ? (
-            // Delete Button
+            // Delete Button on hover
             <button
               onClick={() => handleDeleteTodo(todo?.id)}
               title="Delete"
@@ -80,7 +80,7 @@ const SingleTodo = ({ todo }) => {
               <MdDelete className="mt-[2px]" />
             </button>
           ) : (
-            // Edit button
+            // Edit button on hover
             <button
               title="Edit title"
               className="hidden align-center justify-center  w-5 h-5  text-gray-500 rounded hover:bg-gray-200 group:hover:flex group-hover:flex "

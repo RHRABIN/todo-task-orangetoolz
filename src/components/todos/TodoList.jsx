@@ -43,7 +43,7 @@ const TodoList = ({ title, todos = [] }) => {
         </span>
       </div>
 
-      {/* Same status all todo mapping and display column */}
+      {/* Same status all todos mapping and display column */}
       <div className="flex flex-col  pb-2 overflow-auto mt-3 ">
         {todos.map((todo) => {
           return <SingleTodo key={todo.id} todo={todo} />;
